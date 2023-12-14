@@ -14,7 +14,8 @@ app.use(helmet.dnsPrefetchControl())
 app.use(helmet.noCache())
 app.use(helmet.contentSecurityPolicy({
   directives: {
-    "default-src": ["'self'", "trusted-cdn.com"],
+    "default-src": ["'self'"],
+    "script-src": [ "trusted-cdn.com"],
   }
 }))
 
