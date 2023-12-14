@@ -12,6 +12,11 @@ app.use(helmet.ieNoOpen())
 app.use(helmet.hsts({ maxAge: 90*24*60*60, focus: true }))
 app.use(helmet.dnsPrefetchControl())
 app.use(helmet.noCache())
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    "script-src": ["'self'", "trusted-cdn.com"],
+  }
+}))
 
 
 
@@ -33,35 +38,6 @@ app.use(helmet.noCache())
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-app.use(helmet.hidePoweredBy());
-app.use(
-  helmet.frameguard({
-    action: "DENY",
-  }),
-);
-app.use(helmet.xssFilter());
-app.use(helmet.noSniff());
-app.use(helmet.ieNoOpen());
-app.use(helmet.hsts({ maxAge: 90 * 24 * 60 * 60, focus: true }));
 
 module.exports = app;
 const api = require("./server.js");
